@@ -2,7 +2,6 @@ package sample;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyCode;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -55,8 +54,7 @@ public class Controller {
         lstNotes.getSelectionModel()
                 .selectedItemProperty()
                 .addListener((observable, oldSelectedNote, newSelectedNote) -> fillForm(newSelectedNote));
-        // Opis akcji dla kliknięcia przycisku resetu formularza (Utwórz nową).
-        // Usuniemy w takim wypadku zaznaczenie na liście, co pociągnie za sobą skutek resetu formularza.
+
         btnNew.setOnAction(event -> lstNotes.getSelectionModel().clearSelection());
         btnDelete.setOnAction(event -> {
             Note selectedNote = getSelectedNote();
@@ -139,7 +137,6 @@ public class Controller {
             LocalDateTime editTime = LocalDateTime.now();
             note.setEditTime(editTime);
             addNewLog("Zmienino " + actionMessage(note));
-            // "Poinformujemy" listę o aktualizacji jej elementu - wymusimy jej odświeżenie.
             lstNotes.refresh();
             return true;
         }
@@ -183,31 +180,5 @@ public class Controller {
         } else return true;
     }
 
-//    public void setup() {
-//        setSaveAccelerator(btnAdd);
-//    }
-
-
-//    private void setSaveAccelerator(Button button) {
-//        if (button == null) {
-//            System.out.println("Button null!!");
-//        }
-//        assert button != null;
-//        Scene scene = button.getScene();
-//        if (scene == null) {
-//            throw new IllegalArgumentException("setSaveAccelerator must be called when a button is attached to a scene");
-//        }
-//
-//        scene.getAccelerators().put(
-//                new KeyCodeCombination(KeyCode.S, KeyCombination.SHORTCUT_DOWN),
-//                new Runnable() {
-//                    @FXML
-//                    public void run() {
-//
-//                        button.fire();
-//                    }
-//                }
-//        );
-//    }
 
 }
